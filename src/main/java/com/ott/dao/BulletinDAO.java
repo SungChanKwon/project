@@ -69,12 +69,17 @@ public class BulletinDAO {
 		
 	}
 	
-	public List<BulletionVO> getAllBulletin() {
-		return list;
+	public List<BulletionVO> getAllBulletin() {		
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
+		return null;
 	}
 	
 	public BulletionVO selectBulletinTitle(int BulletinNum) {
-		
+		return null;
 	}
 	
 	public void updateReadCount(int BulletinNum) {
