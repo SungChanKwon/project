@@ -21,6 +21,7 @@ public class CommentDAO {
 	private static Connection getConnection() {
 		Connection conn = null;
 		try {
+			System.out.println(conn);
 		Context initContext = new InitialContext();
 		Context envContext  = (Context)initContext.lookup("java:/comp/env");
 		DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");

@@ -28,4 +28,5 @@ public class BulletionVO {
 	private Timestamp bulletinDate;
 	private String bulletinContent;
 
+
 }

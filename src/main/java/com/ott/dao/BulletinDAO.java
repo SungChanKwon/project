@@ -58,15 +58,27 @@ public class BulletinDAO {
 	}
 	
 	public void insertBulletin(BulletionVO bVo) {
-		
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
 	}
 	
 	public void updateBulletin(BulletionVO bVo) {
-		
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
 	}
 	
 	public void deleteBulletin(int BulletinNum) {
-		
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
+		System.out.println("123123123");
 	}
 	
 	public List<BulletionVO> getAllBulletin() {		
