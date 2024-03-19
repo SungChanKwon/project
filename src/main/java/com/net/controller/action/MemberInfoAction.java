@@ -1,17 +1,25 @@
 package com.net.controller.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdminMenu implements Action{
+import com.net.dao.MemberDAO;
+import com.net.dto.memberVO;
+
+public class MemberInfoAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("admin/AdminMenu.jsp").forward(request, response);
+		List<memberVO> list = MemberDAO.getInstance().getAllMember();
+		
+		request.setAttribute("memberList", list);
+		
+		request.getRequestDispatcher("admin/MemberInfo.jsp").forward(request, response);
 	}
 
 }

@@ -6,12 +6,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdminMenu implements Action{
+import com.net.dao.MemberDAO;
+import com.net.dto.memberVO;
+
+public class DeleteMemberAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("admin/AdminMenu.jsp").forward(request, response);
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		
+		MemberDAO.getInstance().deleteMember(userId);
+		
+		response.sendRedirect("NetServlet?command=member_info");
+		
 	}
 
 }

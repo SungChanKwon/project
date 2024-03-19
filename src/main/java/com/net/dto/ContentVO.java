@@ -19,15 +19,15 @@ year number(4) not null,
 story varchar2(1000) not null,
 poster varchar2(30) not null
 );
-create SEQUENCE content_seq start with 1 increment by 1;
+
+	 * 
 	 * */
-	
-	int contentNum;
-	String contentName;
-	String genre;
-	String actor;
-	int year;
-	String story;
-	String poster;
-	
+
+	private int contentNum;
+	private String contentName;
+	private String genre;
+	private String actor;
+	private int year;
+	private String story;
+	private String poster;
 }

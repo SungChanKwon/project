@@ -6,12 +6,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdminMenu implements Action{
+import com.net.dao.BulletinDAO;
+
+public class DeleteBulletinAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("admin/AdminMenu.jsp").forward(request, response);
+		int bulletinNum = Integer.parseInt(request.getParameter("bulletinNum"));
+		
+		BulletinDAO.getInstance().deleteBulletin(bulletinNum);
+		
+		response.sendRedirect("NetServlet?command=delete_bulletin_form");
+		
 	}
 
 }

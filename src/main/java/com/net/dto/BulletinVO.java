@@ -1,6 +1,6 @@
 package com.net.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,8 +23,10 @@ constraint FK_USERNUM foreign key (userNum) references member(usernum)
 	 * */
 	
 	int bulletinNum;
-	int userNum;
+	String userId;
+	String name;
 	String bulletinTitle;
-	Date bulletinDate;
+	Timestamp bulletinDate;
 	String bulletinContent;
+	int readCount;
 }

@@ -103,13 +103,12 @@ public class ContentDAO {
 			con = DBManager.getConnection();
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setInt(1, vo.getContentNum());
-			pstmt.setString(2, vo.getContentName());
-			pstmt.setString(3, vo.getGenre());
-			pstmt.setString(4, vo.getActor());
-			pstmt.setInt(5, vo.getYear());
-			pstmt.setString(6, vo.getStory());
-			pstmt.setString(7, vo.getPoster());
+			pstmt.setString(1, vo.getContentName());
+			pstmt.setString(2, vo.getGenre());
+			pstmt.setString(3, vo.getActor());
+			pstmt.setInt(4, vo.getYear());
+			pstmt.setString(5, vo.getStory());
+			pstmt.setString(6, vo.getPoster());
 
 			pstmt.executeUpdate();
 

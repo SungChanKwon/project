@@ -6,12 +6,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdminMenu implements Action{
+import com.net.dao.ContentDAO;
+
+public class DeleteCotentAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("admin/AdminMenu.jsp").forward(request, response);
+		int contentNum = Integer.parseInt(request.getParameter("contentNum"));
+		
+		ContentDAO.getInstance().deleteContent(contentNum);
+		
+		response.sendRedirect("NetServlet?command=content_info");
 	}
 
 }
