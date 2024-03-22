@@ -9,20 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.net.dao.MemberDAO;
 import com.net.dto.memberVO;
 
-public class DeleteMemberAction implements Action {
+public class HeaderFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("넘어옴");
 		String userId = request.getParameter("userId");
+		memberVO vo = MemberDAO.getInstance().getOneMember(userId);
 		
-		
-		System.out.println(userId);
-		MemberDAO.getInstance().deleteMember(userId);
-		
-		response.sendRedirect("OttServlet?command=member_info");
-		
+		request.setAttribute("member", vo);
+		request.getRequestDispatcher("header.jsp").forward(request, response);
 	}
 
 }

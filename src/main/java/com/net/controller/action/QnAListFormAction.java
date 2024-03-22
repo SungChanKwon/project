@@ -7,15 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.net.dao.ContentDAO;
-import com.net.dto.ContentVO;
+import com.net.dao.QnaDAO;
+import com.net.dto.QnAReplyVO;
+import com.net.dto.QnAVO;
 import com.net.dto.pagingVO;
 
-public class ContentInfoAction implements Action {
+public class QnAListFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		int page = 1;
 		int limit = 10;
@@ -27,14 +27,17 @@ public class ContentInfoAction implements Action {
 			limit = Integer.parseInt(request.getParameter("limit"));
 		}
 		
-		List<ContentVO> list = ContentDAO.getInstance().getAllContentList(page,limit);		
+		List<QnAVO> list = QnaDAO.getInstance().getAllList(page, limit);
 		
-		int listCount = ContentDAO.getInstance().getContentList();
-		pagingVO vo = new pagingVO(page, limit,listCount);
+		int count = QnaDAO.getInstance().getQnaList();
+		pagingVO vo = new pagingVO(page, limit, count);
 		
+		QnAReplyVO rVo = new QnAReplyVO();
+		
+		request.setAttribute("qnaReply", rVo);
 		request.setAttribute("page", vo);
-		request.setAttribute("contentList", list);
-		request.getRequestDispatcher("admin/ContentInfo.jsp").forward(request, response);
+		request.setAttribute("qnaList", list);
+		request.getRequestDispatcher("qna/QnAList.jsp").forward(request, response);
 		
 	}
 

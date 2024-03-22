@@ -13,31 +13,31 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 </header>
 <section>
-	<h1>컨텐츠 목록</h1>
-	<form name="frm">
-	<div id="insert">
-		<a href="OttServlet?command=insert_content_form">컨텐츠 추가</a>
-		</div>
+	<h1>QnA 목록</h1>
 		<table style="text-align:center;" align="center">
 			<tr>
-				<th>컨텐츠 번호</th>
-				<th>컨텐츠 제목</th>
-				<th>감독</th>
-				<th>배우</th>
-				<th>개봉연도</th>
-				<th>삭제</th>
+				<th>답변 여부</th>
+				<th>QnA 번호</th>
+				<th>QnA 제목</th>
+				<th>아이디</th>
+				<th>등록 일자</th>
+				<th>QnA 종류</th>
 			</tr>
-			<c:forEach items="${contentList}" var="content">
+			<c:forEach items="${qnaList}" var="qna">
 				<tr>
-					<td>${content.contentNum}</td>
-					<td><a
-						href="OttServlet?command=content_detail&contentNum=${content.contentNum}&page=${page.page}">${content.contentName}</a></td>
-					<td>${content.director}</td>
-					<td>${content.actor}</td>
-					<td>${content.year}</td>
-					<td><a
-						href="OttServlet?command=delete_content&contentNum=${content.contentNum}"
-						onclick="return deleteCheck()">컨텐츠 삭제</a></td>
+					<td>
+						<c:if test="${empty qnaReply.replyNum}">
+							답변완료
+						</c:if>
+						<c:if test="${!empty qnaReply.replyNum}">
+							미답변문의
+						</c:if>
+					</td>
+					<td>${qna.qnaNum}</td>
+					<td><a href="OttServlet?command=qna_detail&qnaNum=${qna.qnaNum}&page=${page.page}">${qna.qnaTitle}</a></td>
+					<td>${qna.userId}</td>
+					<td>${qna.qnaRegiDate}</td>
+					<td>${qna.qnaCategory}</td>
 				</tr>
 			</c:forEach>
 			<tr>
@@ -64,7 +64,6 @@
 		<div class="home" style="text-align:center">
 			<input type="button" value="홈으로" name="home" onclick="location.href='OttServlet?command=admin_menu'">
 		</div>
-	</form>
 	</section>
 <footer>
 	<jsp:include page="../footer.jsp"></jsp:include>

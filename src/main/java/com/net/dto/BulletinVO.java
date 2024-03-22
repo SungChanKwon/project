@@ -22,11 +22,11 @@ constraint FK_USERNUM foreign key (userNum) references member(usernum)
 
 	 * */
 	
-	int bulletinNum;
-	String userId;
-	String name;
-	String bulletinTitle;
-	Timestamp bulletinDate;
-	String bulletinContent;
-	int readCount;
+	private int bulletinNum;
+	private String userId;
+	private String name;
+	private String bulletinTitle;
+	private Timestamp bulletinDate;
+	private String bulletinContent;
+	private int readCount;
 }

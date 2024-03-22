@@ -30,4 +30,5 @@ poster varchar2(30) not null
 	private int year;
 	private String story;
 	private String poster;
+	private String director;
 }

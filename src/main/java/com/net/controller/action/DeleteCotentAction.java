@@ -17,7 +17,7 @@ public class DeleteCotentAction implements Action {
 		
 		ContentDAO.getInstance().deleteContent(contentNum);
 		
-		response.sendRedirect("NetServlet?command=content_info");
+		response.sendRedirect("OttServlet?command=content_info");
 	}
 
 }

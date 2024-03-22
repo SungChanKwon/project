@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.net.dao.ContentDAO;
 import com.net.dto.ContentVO;
+import com.net.dto.pagingVO;
 
 public class ContentDetailAction implements Action {
 
@@ -15,11 +16,22 @@ public class ContentDetailAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int contentNum = Integer.parseInt(request.getParameter("contentNum"));
-		System.out.println(contentNum);
+		int page=1;
+		int limit =10;
+		if(request.getParameter("page")!= null) {
+			page = Integer.parseInt(request.getParameter("page"));			
+		}
+		if(request.getParameter("limit")!=null) {
+			limit = Integer.parseInt(request.getParameter("limit"));			
+		}
 		
 		ContentVO vo =  ContentDAO.getInstance().getOneContent(contentNum);
 		
+		int count = ContentDAO.getInstance().getContentList();
+		pagingVO pVo = new pagingVO(page,limit,count);
+		
 		request.setAttribute("content", vo);
+		request.setAttribute("page", pVo);	
 		request.getRequestDispatcher("admin/ContentDetail.jsp").forward(request, response);
 	}
 

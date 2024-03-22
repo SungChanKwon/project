@@ -9,14 +9,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.net.dao.BulletinDAO;
 import com.net.dto.BulletinVO;
+import com.net.dto.pagingVO;
 
 public class DeleteBulletinFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<BulletinVO> list = BulletinDAO.getInstance().getAllBulletin();
+		int page = 1;
+		int limit = 10;
 		
+		if(request.getParameter("page")!= null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		if(request.getParameter("limit")!=null) {
+			limit = Integer.parseInt(request.getParameter("limit"));
+		}
+		
+		List<BulletinVO> list = BulletinDAO.getInstance().getAllBulletinList(page,limit);
+		
+		int count = BulletinDAO.getInstance().getBulletinList();
+		pagingVO vo = new pagingVO(page, limit, count);
+		
+		request.setAttribute("page", vo);
 		request.setAttribute("bulletinList", list);
 		
 		request.getRequestDispatcher("admin/DeleteBulletin.jsp").forward(request, response);

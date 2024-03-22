@@ -5,10 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/bulletinDetail.css?after">
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="wrap" align="center">
+<header>
+	<jsp:include page="../header.jsp"></jsp:include>
+</header>
+<section>
+	<div id="info" align="center">
 		<input type="hidden" name="contentNum" value="${bulletin.bulletinNum}">
 		<h1>게시글 상세페이지</h1>
 		<table>
@@ -38,9 +43,13 @@
 
 
 		<br>  
-		<a href="NetServlet?command=delete_bulletin&bulletinNum=${bulletin.bulletinNum}">삭제하기</a>
+		<a href="OttServlet?command=delete_bulletin&bulletinNum=${bulletin.bulletinNum}">삭제하기</a>
 			<input type="button" value="게시글 리스트"
-			onclick="location.href='NetServlet?command=delete_bulletin_form'">
+			onclick="location.href='OttServlet?command=delete_bulletin_form'">
 	</div>
+	</section>
+	<footer>
+	<jsp:include page="../footer.jsp"></jsp:include>
+</footer>
 </body>
 </html>

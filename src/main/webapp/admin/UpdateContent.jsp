@@ -5,14 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/updateContent.css?after">
+<script type="text/javascript" src="script/content.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="wrap" align="center">
+<header>
+	<jsp:include page="../header.jsp"></jsp:include>
+</header>
+<section>
 		<h1>컨텐츠 수정</h1>
+	<div id="info" align="center">
 		<form enctype="multipart/form-data" method="post" name="frm"
-			action="NetServlet">
+			action="OttServlet">
 			<input type="hidden" name="command" value="update_content">
+			<input type="hidden" name="contentNum" value="${content.contentNum}">
+			<input type="hidden" name="nomakeImg" value="${content.poster}">
+			<input type="hidden" name="page" value="${page}">
 			<table>
 				<tr>
 					<td><c:choose>
@@ -25,37 +34,56 @@
 						</c:choose></td>
 					<td>
 						<table>
-						<tr>
-							<th>컨텐츠 제목</th>
-							<td>${content.contentName}</td>
-						</tr>
-						<tr>
-							<th>장르</th>
-							<td>${content.genre}</td>
-						</tr>
-						<tr>
-							<th>배우</th>
-							<td>${content.actor}</td>
-						</tr>
-						<tr>
-							<th>개봉연도</th>
-							<td colspan="3">${content.year}</td>
-						</tr>
-						<tr>
-							<th>내용</th>
-							<td colspan="3"><pre>${content.story}</pre></td>
-						</tr>
-					</table>
-					<br>
-					<br>
-					<input type="submit" value="등록">
-					<input type="reset" value="다시 작성">
-					<input type="button" value="목록"
-						onclick="location.href='NetServlet?command=content_info'">
+							<tr>
+								<th>컨텐츠 제목</th>
+								<td><input type="text" name="contentName"
+									value="${content.contentName}" size="70"></td>
+							</tr>
+							<tr>
+								<th>감독</th>
+								<td><input type="text" name="director"
+									value="${content.director}" size="70"></td>
+							</tr>
+							<tr>
+								<th>장르</th>
+								<td><input type="text" name="genre"
+									value="${content.genre}" size="70"></td>
+							</tr>
+							<tr>
+								<th>배우</th>
+								<td><input type="text" name="actor"
+									value="${content.actor}" size="70"></td>
+							</tr>
+							<tr>
+								<th>개봉연도</th>
+								<td colspan="3"><input type="text" name="year"
+									value="${content.year}" size="70"></td>
+							</tr>
+							<tr>
+								<th>내용</th>
+								<td colspan="3"><textarea
+										 name="story">${content.story}</textarea></td>
+							</tr>
+							<tr>
+								<th>사진</th>
+									<td colspan="3">
+										<input type="file" name="poster" size="70">
+									</td>
+							</tr>
+						</table>
 					</td>
 				</tr>
 			</table>
+			<div class="link">
+			<input type="submit" value="등록" onclick="return updateCheck('${content.contentNum}')"> 
+						<input type="reset" value="다시 작성"> 
+						<input type="button" value="목록" onclick="location.href='OttServlet?command=content_detail&contentNum=${content.contentNum}&page=${page.page}'">
+		</div>
 		</form>
 	</div>
+	</section>
+	<footer>
+	<jsp:include page="../footer.jsp"></jsp:include>
+</footer>
 </body>
 </html>

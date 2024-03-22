@@ -3,6 +3,7 @@ package com.net.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,86 @@ public class ContentDAO {
 		return instance;
 	}
 
+	
+	public int getContentList() {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select count(*) from content";
+		int count=0; 
+		
+		try {
+			
+			con = DBManager.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+		
+		return count;
+	}
+	
+	public List<ContentVO> getAllContentList(int page, int limit) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		List<ContentVO> list = new ArrayList<ContentVO>();
+
+		String sql = "select * from (select rownum rnum, contentNum, "
+				+ "contentName, genre, actor, year, story, poster, director "
+				+ "from (select * from content order by contentNum desc)) "
+				+ "where rnum >=? and rnum <= ?";
+
+		try {
+			con = DBManager.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			int startrow = (page - 1)*limit+1;
+			int endrow = startrow+limit-1;
+			
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, endrow);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ContentVO vo = new ContentVO();
+
+				vo.setContentNum(rs.getInt("contentNum"));
+				vo.setContentName(rs.getString("contentName"));
+				vo.setGenre(rs.getString("genre"));
+				vo.setActor(rs.getString("actor"));
+				vo.setYear(rs.getInt("year"));
+				vo.setStory(rs.getString("story"));
+				vo.setPoster(rs.getString("poster"));
+				vo.setDirector(rs.getString("director"));
+
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+
+		return list;
+	}
+	
 	public List<ContentVO> getAllContent() {
 
 		Connection con = null;
@@ -47,6 +128,7 @@ public class ContentDAO {
 				vo.setYear(rs.getInt("year"));
 				vo.setStory(rs.getString("story"));
 				vo.setPoster(rs.getString("poster"));
+				vo.setDirector(rs.getString("director"));
 
 				list.add(vo);
 			}
@@ -82,6 +164,7 @@ public class ContentDAO {
 				vo.setYear(rs.getInt("year"));
 				vo.setStory(rs.getString("story"));
 				vo.setPoster(rs.getString("poster"));
+				vo.setDirector(rs.getString("director"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,7 +180,7 @@ public class ContentDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "insert into content values(content_seq.nextval,?,?,?,?,?,?)";
+		String sql = "insert into content values(content_seq.nextval,?,?,?,?,?,?,?)";
 
 		try {
 			con = DBManager.getConnection();
@@ -109,6 +192,7 @@ public class ContentDAO {
 			pstmt.setInt(4, vo.getYear());
 			pstmt.setString(5, vo.getStory());
 			pstmt.setString(6, vo.getPoster());
+			pstmt.setString(7, vo.getDirector());
 
 			pstmt.executeUpdate();
 
@@ -126,7 +210,7 @@ public class ContentDAO {
 		PreparedStatement pstmt = null;
 
 		String sql = "update content set contentName=?, genre=?, actor=?, year=?, "
-				+ "story = ?, poster=? where contentNum=?";
+				+ "story = ?, poster=?, director=? where contentNum=?";
 
 		try {
 			con = DBManager.getConnection();
@@ -138,7 +222,8 @@ public class ContentDAO {
 			pstmt.setInt(4, vo.getYear());
 			pstmt.setString(5, vo.getStory());
 			pstmt.setString(6, vo.getPoster());
-			pstmt.setInt(7, vo.getContentNum());
+			pstmt.setString(7, vo.getDirector());
+			pstmt.setInt(8, vo.getContentNum());
 
 			pstmt.executeUpdate();
 
@@ -160,7 +245,7 @@ public class ContentDAO {
 		try {
 			con = DBManager.getConnection();
 			pstmt = con.prepareStatement(sql);
-
+			pstmt.setInt(1, contentNum);
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -169,7 +254,6 @@ public class ContentDAO {
 			DBManager.close(con, pstmt);
 		}
 	}
-
 
 	public ContentVO selectCotentTitle(String contentName) {
 
@@ -195,6 +279,7 @@ public class ContentDAO {
 				vo.setYear(rs.getInt("year"));
 				vo.setStory(rs.getString("story"));
 				vo.setPoster(rs.getString("poster"));
+				vo.setDirector(rs.getString("director"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -229,6 +314,7 @@ public class ContentDAO {
 				vo.setYear(rs.getInt("year"));
 				vo.setStory(rs.getString("story"));
 				vo.setPoster(rs.getString("poster"));
+				vo.setDirector(rs.getString("director"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -263,6 +349,7 @@ public class ContentDAO {
 				vo.setYear(rs.getInt("year"));
 				vo.setStory(rs.getString("story"));
 				vo.setPoster(rs.getString("poster"));
+				vo.setDirector(rs.getString("director"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

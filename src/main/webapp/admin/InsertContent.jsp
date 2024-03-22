@@ -4,13 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="css/insertContent.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="wrap" align="center">
+<header>
+	<jsp:include page="../header.jsp"></jsp:include>
+</header>
+<section>
+	<div id="info" align="center">
       <h1>컨텐츠 등록</h1>
-      <form enctype="multipart/form-data" method="post" name="frm" action="NetServlet">
+      <form enctype="multipart/form-data" method="post" name="frm" action="OttServlet">
          <input type="hidden" name="command" value="insert_content">
          <table>
             <tr>
@@ -19,7 +24,12 @@
             </tr> <tr>
                <th>장르</th>
                <td><input type="text" size="70" name="genre"></td>
-            </tr> <tr>
+            </tr> 
+            <tr>
+            <th>감독</th>
+               <td><input type="text" size="70" name="director"></td>
+            </tr>
+            <tr>
                <th>배우</th>
                <td><input type="text" size="70" name="actor"></td>
             </tr> <tr>
@@ -39,8 +49,12 @@
          <br> <input type="submit" value="등록"> 
          <input type="reset" value="다시 작성">
           <input type="button" value="목록"
-            onclick="location.href='NetServlet?command=content_info'">
+            onclick="location.href='OttServlet?command=content_info'">
       </form>
    </div>
+   </section>
+   <footer>
+	<jsp:include page="../footer.jsp"></jsp:include>
+</footer>
 </body>
 </html>
