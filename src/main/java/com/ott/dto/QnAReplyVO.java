@@ -1,4 +1,4 @@
-package com.net.dto;
+package com.ott.dto;
 
 import java.sql.Timestamp;
 

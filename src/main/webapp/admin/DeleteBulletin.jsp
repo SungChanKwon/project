@@ -34,24 +34,22 @@
 		</c:forEach>
 		<tr>
 			<td colspan="5">
-				<c:choose>
-					<c:when test="${page.prev}">
-						<a href="OttServlet?command=delete_bulletin_form&page${page.endPage-(endPage-10)}&limit=${page.limit}">이전</a>
-					</c:when>
-				</c:choose>
-				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="nowPage">
-					<c:if test="${page.page == nowPage}">
-						<a href="OttServlet?command=delete_bulletin_form&page=${nowPage}&limit=${page.limit}" style="color:yellowgreen">${nowPage}</a>
+			<div id="page">
+					<c:if test="${Bpage.prev}">
+						<a href="OttServlet?command=delete_bulletin_form&page${Bpage.startPage-1}&limit=${Bpage.limit}">이전</a>
 					</c:if>
-					<c:if test="${page.page != nowPage}">
-						<a href="OttServlet?command=delete_bulletin_form&page=${nowPage}&limit=${page.limit}" >${nowPage}</a>
+					<c:forEach begin="${Bpage.startPage}" end="${Bpage.endPage}" var="nowPage">
+					<c:if test="${Bpage.page == nowPage}">
+						<a href="OttServlet?command=delete_bulletin_form&page=${nowPage}&limit=${Bpage.limit}" style="color:yellowgreen">${nowPage}</a>
+					</c:if>
+					<c:if test="${Bpage.page != nowPage}">
+						<a href="OttServlet?command=delete_bulletin_form&page=${nowPage}&limit=${Bpage.limit}" >${nowPage}</a>
 					</c:if>
 				</c:forEach>
-				<c:choose>
-					<c:when test="${page.next}">
-						<a href="OttServlet?command=delete_bulletin_form&page${page.startPage+10}&limit=${page.limit}">이전</a>
-					</c:when>
-				</c:choose>
+					<c:if test="${Bpage.next}">
+						<a href="OttServlet?command=delete_bulletin_form&page${Bpage.endPage +1}&limit=${Bpage.limit}">이전</a>
+					</c:if>
+				</div>					
 			</td>
 		</tr>
 	</table>

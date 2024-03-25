@@ -7,12 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ott.dao.QnaDAO;
-import com.ott.dto.QnAReplyVO;
-import com.ott.dto.QnAVO;
+import com.ott.dao.BulletinDAO;
+import com.ott.dto.BulletinVO;
 import com.ott.dto.PagingVO;
 
-public class QnAListFormAction implements Action {
+public class DeleteBulletinFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,19 +22,19 @@ public class QnAListFormAction implements Action {
 		if(request.getParameter("page")!= null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		if(request.getParameter("limit")!= null) {
+		if(request.getParameter("limit")!=null) {
 			limit = Integer.parseInt(request.getParameter("limit"));
 		}
 		
-		List<QnAVO> list = QnaDAO.getInstance().getAllList(page, limit);
+		List<BulletinVO> list = BulletinDAO.getInstance().getAllBulletinList(page,limit);
 		
-		int count = QnaDAO.getInstance().getQnaList();
+		int count = BulletinDAO.getInstance().getBulletinList();
 		PagingVO vo = new PagingVO(page, limit, count);
 		
+		request.setAttribute("Bpage", vo);
+		request.setAttribute("bulletinList", list);
 		
-		request.setAttribute("page", vo);
-		request.setAttribute("qnaList", list);
-		request.getRequestDispatcher("qna/QnAList.jsp").forward(request, response);
+		request.getRequestDispatcher("admin/DeleteBulletin.jsp").forward(request, response);
 		
 	}
 

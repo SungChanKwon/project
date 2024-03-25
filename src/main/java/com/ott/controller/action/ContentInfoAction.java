@@ -7,15 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ott.dao.QnaDAO;
-import com.ott.dto.QnAReplyVO;
-import com.ott.dto.QnAVO;
+import com.ott.dao.ContentDAO;
+import com.ott.dto.ContentVO;
 import com.ott.dto.PagingVO;
 
-public class QnAListFormAction implements Action {
+public class ContentInfoAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
 		int page = 1;
 		int limit = 10;
@@ -27,15 +27,14 @@ public class QnAListFormAction implements Action {
 			limit = Integer.parseInt(request.getParameter("limit"));
 		}
 		
-		List<QnAVO> list = QnaDAO.getInstance().getAllList(page, limit);
+		List<ContentVO> list = ContentDAO.getInstance().getAllContentList(page,limit);		
 		
-		int count = QnaDAO.getInstance().getQnaList();
-		PagingVO vo = new PagingVO(page, limit, count);
-		
+		int listCount = ContentDAO.getInstance().getContentList();
+		PagingVO vo = new PagingVO(page, limit,listCount);
 		
 		request.setAttribute("page", vo);
-		request.setAttribute("qnaList", list);
-		request.getRequestDispatcher("qna/QnAList.jsp").forward(request, response);
+		request.setAttribute("contentList", list);
+		request.getRequestDispatcher("admin/ContentInfo.jsp").forward(request, response);
 		
 	}
 

@@ -16,7 +16,7 @@
 			<input type="button" value="회원관리" onclick="location.href='OttServlet?command=member_info'"> 
 			<input type="button" value="컨텐츠 관리" onclick="location.href='OttServlet?command=content_info'"> 
 			<input type="button" value="게시글 삭제" onclick="location.href='OttServlet?command=delete_bulletin_form'">
-			<input type="button" name="qna" value="Q&A" onclick="location.href='OttServlet?command=qna_list_form'">
+			<input type="button" name="qna" value="Q&A" onclick="location.href='OttServlet?command=qna_list'">
 		</div>
 	</section>
 	<footer>

@@ -7,12 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ott.dao.QnaDAO;
-import com.ott.dto.QnAReplyVO;
-import com.ott.dto.QnAVO;
+import com.ott.dao.MemberDAO;
+import com.ott.dto.MemberVO;
 import com.ott.dto.PagingVO;
 
-public class QnAListFormAction implements Action {
+public class MemberInfoAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,23 +19,21 @@ public class QnAListFormAction implements Action {
 		int page = 1;
 		int limit = 10;
 		
-		if(request.getParameter("page")!= null) {
+		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		if(request.getParameter("limit")!= null) {
+		if(request.getParameter("limit") != null) {
 			limit = Integer.parseInt(request.getParameter("limit"));
 		}
 		
-		List<QnAVO> list = QnaDAO.getInstance().getAllList(page, limit);
+		List<MemberVO> list = MemberDAO.getInstance().getAllMemberList(page, limit);
 		
-		int count = QnaDAO.getInstance().getQnaList();
+		int count = MemberDAO.getInstance().getMemberList();		
 		PagingVO vo = new PagingVO(page, limit, count);
 		
-		
 		request.setAttribute("page", vo);
-		request.setAttribute("qnaList", list);
-		request.getRequestDispatcher("qna/QnAList.jsp").forward(request, response);
-		
+		request.setAttribute("memberList", list);
+		request.getRequestDispatcher("admin/MemberInfo.jsp").forward(request, response);
 	}
 
 }

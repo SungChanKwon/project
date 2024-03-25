@@ -9,15 +9,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="header">
-		<input type="image" name="logo" src="images/logo.png">
+	<div id="goMain">
+	<a href="OttServlet?command=main">
+	<img alt="로고" src="images/logo.png">
+	</a>
+	</div>
 	<div id="menu" align="left">
 		<ul>
 			<li><a href="#">컨텐츠</a></li>
 			<li><a href="#">게시판</a></li>
-			<li><a href="#">Q&A</a></li>
+			<li><a href="OttServlet?command=qna_list">Q&A</a></li>
 		</ul>
-	</div>
 	</div>
 	<div id="profile">
 		<c:choose>
@@ -26,13 +28,13 @@
 				<input type="image" src="images/profile4.png" onclick="location.href='OttServlet?command=admin_menu'">
 			</c:if>
 			<c:if test="${member.admin == 0 }">
-				<input type="image" src="images/profile3.png" onclick="location.href='#'">
+				<input type="image" src="images/profile3.png" onclick="location.href='main.jsp'">
 			</c:if>
 		</c:when>
 		<c:when test="${empty member.userId}">
-		<div class="login"><a href="#">로그인이 필요합니다</a></div> 
+		<div class="login"><a href="OttServlet?command=member_login_form" style="margin-top:50px" >로그인이 필요합니다</a></div> 
 		</c:when>
 		</c:choose>
-	</div>
+		</div>
 </body>
 </html>

@@ -4,21 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/*
- * CONTENTNUM  NOT NULL NUMBER(5)      
-CONTENTNAME NOT NULL VARCHAR2(50)   
-GENRE       NOT NULL VARCHAR2(100)  
-ACTOR       NOT NULL VARCHAR2(200)  
-YEAR        NOT NULL NUMBER(4)      
-STORY       NOT NULL VARCHAR2(2000) 
-POSTER      NOT NULL VARCHAR2(100)  
-DIRECTOR             VARCHAR2(50)  
- */
-
 @Setter
 @Getter
 @ToString
 public class ContentVO {
+
+	/*
+	 * create table content(
+contentNum number(5) not null primary key,
+contentName varchar2(50) not null,
+genre varchar2(30) not null,
+actor varchar2(100) not null,
+year number(4) not null,
+story varchar2(1000) not null,
+poster varchar2(30) not null
+);
+
+	 * 
+	 * */
 
 	private int contentNum;
 	private String contentName;
@@ -28,5 +31,4 @@ public class ContentVO {
 	private String story;
 	private String poster;
 	private String director;
-	
 }

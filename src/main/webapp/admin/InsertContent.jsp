@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/insertContent.css">
+<script type="text/javascript" src="script/content.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -46,7 +47,7 @@
             </tr>
          </table>
          <br>
-         <br> <input type="submit" value="등록"> 
+         <br> <input type="submit" value="등록" onclick="return check()"> 
          <input type="reset" value="다시 작성">
           <input type="button" value="목록"
             onclick="location.href='OttServlet?command=content_info'">

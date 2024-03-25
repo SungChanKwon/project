@@ -1,4 +1,4 @@
-package com.net;
+package com.ott;
 
 import java.io.IOException;
 
@@ -9,19 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.net.controller.action.Action;
-import com.net.controller.action.ActionFactory;
-import com.net.dao.ContentDAO;
-import com.net.dto.ContentVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.ott.controller.action.Action;
+import com.ott.controller.action.ActionFactory;
+import com.ott.dao.ContentDAO;
+import com.ott.dto.ContentVO;
 
 @WebServlet("/OttServlet")
 public class OttServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		
 		String command = request.getParameter("command");
 		

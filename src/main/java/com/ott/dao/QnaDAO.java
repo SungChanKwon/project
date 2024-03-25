@@ -1,4 +1,4 @@
-package com.net.dao;
+package com.ott.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.net.dto.QnAVO;
+import com.ott.dto.QnAVO;
 
 import util.DBManager;
 
@@ -57,7 +57,10 @@ public class QnaDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from (select rownum rnum, a.* " + "(select * from qna order by qnaNum desc) a) "
+		String sql = "select * from (select rownum rnum, qnaNum, "
+				+ "userId, qnaTitle, qnaContent, QnaRegiDate, "
+				+ "qnaPwd, qnaCategory from " 
+		+ "(select * from qna order by qnaNum desc)) "
 				+ " where rnum >= ? and rnum <= ?";
 
 		List<QnAVO> list = new ArrayList<QnAVO>();
@@ -105,7 +108,7 @@ public class QnaDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select from qna where qnaNum = ?";
+		String sql = "select * from qna where qnaNum=?";
 
 		QnAVO vo = new QnAVO();
 
@@ -124,7 +127,7 @@ public class QnaDAO {
 				vo.setUserId(rs.getString("userId"));
 				vo.setQnaTitle(rs.getString("qnaTitle"));
 				vo.setQnaContent(rs.getString("qnaContent"));
-				vo.setQnaRegiDate(rs.getTimestamp("qnaREgiDate"));
+				vo.setQnaRegiDate(rs.getTimestamp("qnaRegiDate"));
 				vo.setQnaPwd(rs.getString("qnaPwd"));
 				vo.setQnaCategory(rs.getString("qnaCategory"));
 

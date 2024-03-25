@@ -6,19 +6,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ott.dao.MemberDAO;
-import com.ott.dto.MemberVO;
+import com.ott.dao.ContentDAO;
 
-public class HeaderFormAction implements Action {
+public class DeleteCotentAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = request.getParameter("userId");
-		MemberVO vo = MemberDAO.getInstance().getOneMember(userId);
+		int contentNum = Integer.parseInt(request.getParameter("contentNum"));
 		
-		request.setAttribute("member", vo);
-		request.getRequestDispatcher("header.jsp").forward(request, response);
+		ContentDAO.getInstance().deleteContent(contentNum);
+		
+		response.sendRedirect("OttServlet?command=content_info");
 	}
 
 }

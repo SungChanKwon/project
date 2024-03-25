@@ -1,18 +1,16 @@
 package com.ott.controller.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ott.dao.QnaDAO;
-import com.ott.dto.QnAReplyVO;
 import com.ott.dto.QnAVO;
 import com.ott.dto.PagingVO;
 
-public class QnAListFormAction implements Action {
+public class QnADetailFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,15 +25,16 @@ public class QnAListFormAction implements Action {
 			limit = Integer.parseInt(request.getParameter("limit"));
 		}
 		
-		List<QnAVO> list = QnaDAO.getInstance().getAllList(page, limit);
+		int qnaNum = Integer.parseInt(request.getParameter("qnaNum")); 
+		
+		QnAVO vo = QnaDAO.getInstance().getOneQna(qnaNum);
 		
 		int count = QnaDAO.getInstance().getQnaList();
-		PagingVO vo = new PagingVO(page, limit, count);
+		PagingVO pVo = new PagingVO(page, limit, count);
 		
-		
-		request.setAttribute("page", vo);
-		request.setAttribute("qnaList", list);
-		request.getRequestDispatcher("qna/QnAList.jsp").forward(request, response);
+		request.setAttribute("page", pVo);
+		request.setAttribute("qna", vo);
+		request.getRequestDispatcher("qna/QnADetail.jsp").forward(request, response);
 		
 	}
 
