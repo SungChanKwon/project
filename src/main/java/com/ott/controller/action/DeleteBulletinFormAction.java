@@ -28,7 +28,7 @@ public class DeleteBulletinFormAction implements Action {
 		
 		List<BulletinVO> list = BulletinDAO.getInstance().getAllBulletinList(page,limit);
 		
-		int count = BulletinDAO.getInstance().getBulletinList();
+		int count = BulletinDAO.getInstance().getListCount();
 		PagingVO vo = new PagingVO(page, limit, count);
 		
 		request.setAttribute("Bpage", vo);
