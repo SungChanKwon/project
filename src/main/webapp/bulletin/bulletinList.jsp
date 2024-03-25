@@ -14,7 +14,7 @@
       <h1>게시글 리스트</h1>
       <table class="list">
          <tr>
-            <td colspan="5" style="border: white; text-align: right">
+            <td colspan="6" style="border: white; text-align: right">
             <a href="OttServlet?command=bulletin_write_form">게시글 등록</a></td>
          </tr>
          <tr>
@@ -36,6 +36,26 @@
                <td>${bulletin.readCount}</td>
             </tr>
          </c:forEach>
+         <tr>
+         	<td colspan="6" style="text-align: center">
+         	<div id="page">
+         		<c:if test="${page.prev}">
+         			<a href="OttServlet?command=bulletin_list&page=${page.startPage-1}&limit=${page.limit}">이전</a>
+         		</c:if>
+         		<c:forEach begin="${page.startPage}" end="${page.endPage}" var="nowPage">
+	     			<c:if test="${page.page == nowPage}">
+	     				<a href="OttServlet?command=bulletin_list&page=${nowPage}&limit=${page.limit}" style="color:yellowgreen;">${nowPage}</a>
+	     			</c:if>	    		
+	     			<c:if test="${page.page != nowPage}">
+	     				<a href="OttServlet?command=bulletin_list&page=${nowPage}&limit=${page.limit}">${nowPage}</a>
+	     			</c:if>
+         		</c:forEach>
+         			<c:if test="${page.next}">
+         				<a href="OttServlet?command=bulletin_list&page=${page.endPage +1}&limit=${page.limit}">다음</a>
+         			</c:if>
+         	</div>
+         	</td>
+         </tr>
       </table>
    </div>
 </body>

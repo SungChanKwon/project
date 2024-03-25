@@ -38,8 +38,8 @@ public class BulletinListAction implements Action {
 		int listCount = bDao.getListCount(); // 전체 게시글 수
 		PagingVO pagingVO = new PagingVO(page, limit, listCount);
 		
-		request.setAttribute("pagingVO", pagingVO);
-		
+		request.setAttribute("page", pagingVO);
+		System.out.println("pagingVO : " + pagingVO);
 		request.setAttribute("bulletinList", list);
 		
 		request.getRequestDispatcher(url).forward(request, response);

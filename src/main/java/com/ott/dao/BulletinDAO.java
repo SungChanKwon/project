@@ -107,15 +107,20 @@ public class BulletinDAO {
 		ResultSet rs = null;
 		
 		String sql = "select * from (select rownum rn, a.* "
-					+ "from (select * from board order by bulletinNum desc) a ) "
-					+ "where rn > ? and rn <= ?";
-				
+					+ "from (select * from bulletin order by bulletinNum desc) a ) "
+					+ "where rn >= ? and rn <= ?";
+		
 		
 		try {
 			con = DBManager.getConnection();
 			pstmt = con.prepareStatement(sql); //sql문 전송
-			pstmt.setInt(1, (page - 1) * limit);
-			pstmt.setInt(2, page * limit);
+			
+			int startrow = (page - 1)*limit+1; // 게시글 첫 행 번호
+			int endrow = startrow + limit -1; // 게시글 마지막 행 번호
+			
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, endrow);
+			
 			rs = pstmt.executeQuery(); //sql문 실행 후 결과값 얻어오기
 			
 			while(rs.next()) {
