@@ -7,16 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ott.dto.BulletinVO;
-import com.ott.dto.ContentVO;
-
-import util.DBManager;
+import com.ott.util.DBManager;
 
 public class BulletinDAO {
 
-	private static BulletinDAO instance = new BulletinDAO();
-
-	public BulletinDAO() {
+	private BulletinDAO() {
 	}
+
+	private static BulletinDAO instance = new BulletinDAO();
 
 	public static BulletinDAO getInstance() {
 		return instance;

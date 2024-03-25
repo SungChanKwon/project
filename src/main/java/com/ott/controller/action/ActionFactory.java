@@ -67,10 +67,28 @@ public class ActionFactory {
 			action = new QnAReplyFormAction();
 		}else if(command.equals("qna_reply")){
 			action = new QnAReplyAction();
-		}else if(command.equals("member_login_form")) {
-			action = new MemberLoginFormAction();
-		}else if(command.equals("member_login")) {
-			action = new MemberLoginAction();
+		}else if (command.equals("changeUser_InformationForm")) {
+			action = new changeUserInformationFormAction();
+		} else if (command.equals("BulletinList_View")) {
+			action = new BulletinListViewFormAction();
+		} else if (command.equals("bulletinWishList_View")) {
+			action = new bulletinWishListFormAction();
+		} else if (command.equals("contentWishList_View")) {
+			action = new contentWishListFormAction();
+		} else if (command.equals("bulletin_content_View")) {
+			action = new selectBulletinContentViewAction();
+		} else if (command.equals("myBulletin_content_View")) {
+			action = new selectMyBulletinContentViewAction();
+		} else if (command.equals("Bulletin_delete")) {
+			action = new deleteBulletinAction();
+		} else if (command.equals("comment_Update_Form")) {
+			action = new commentUpdateFormAction();
+		} else if (command.equals("comment_Delete")) {
+			action = new commentDeleteAction();
+		}else if (command.equals("comment_Update")) {
+			action = new commentUpdateAction();
+		}else if(command.equals("serach_bulletin")) {
+			action = new bulletinSearchAction();
 		}
 		return action;
 	}
