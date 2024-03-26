@@ -71,10 +71,40 @@ public class ActionFactory {
 			action = new InsertQnAFormAction();
 		}else if (command.equals("insert_qna")) {
 			action = new InsertQnAAction();
-		}else if (command.equals("member_login_form")) {
-			action = new MemberLoginFormAction();
-		} else if (command.equals("member_login")) {
-			action = new MemberLoginAction();
+		}else if (command.equals("changeUser_InformationForm")) {
+			action = new ChangeUserInformationFormAction();
+		} else if (command.equals("update_member")) {
+			action = new UpdateMemberAction();
+		} else if (command.equals("BulletinList_View")) {
+			action = new BulletinListViewFormAction();
+		} else if (command.equals("bulletinWishList_View")) {
+			action = new BulletinWishListFormAction();
+		} else if (command.equals("delete_User")) {
+			action = new DeleteMemberAction();
+		} else if (command.equals("contentWishList_View")) {
+			action = new ContentWishListFormAction();
+		} else if (command.equals("bulletin_content_View")) {
+			action = new SelectBulletinContentViewAction();
+		} else if (command.equals("myBulletin_content_View")) {
+			action = new SelectMyBulletinContentViewAction();
+		} else if (command.equals("Bulletin_delete")) {
+			action = new DeleteBulletinAction();
+		} else if (command.equals("comment_Insert")) {
+			action = new CommentInsertAction();
+		} else if (command.equals("comment_Update_Form")) {
+			action = new CommentUpdateFormAction();
+		} else if (command.equals("comment_Delete")) {
+			action = new CommentDeleteAction();
+		} else if (command.equals("Bulletin_Update_Form")) {
+			action = new BulletinUpdateFormAction();
+		} else if (command.equals("bulletin_update")) {
+			action = new BulletinUpdateAction();
+		} else if (command.equals("comment_Update")) {
+			action = new CommentUpdateAction();
+		}else if(command.equals("serach_bulletin")) {
+			action = new BulletinSearchAction();
+		}else if(command.equals("logout_User")) {
+			action = new LogoutAction();
 		}
 		return action;
 	}
