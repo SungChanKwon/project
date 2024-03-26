@@ -21,7 +21,7 @@
             </tr>
             <tr>
                <th>아이디</th>
-               <td><input type="text" name="userId" value="hikari" readonly></td>
+               <td><input class="id-input" type="text" name="userId" value="hikari" readonly style="border:none;"></td>
             </tr>
             <tr>
                <th>제목</th>

@@ -1,6 +1,6 @@
 package com.ott.dto;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,9 +19,11 @@ CONSTRAINT FK_commentNum FOREIGN KEY (bulletinNum) REFERENCES bulletin(bulletinN
 @Getter
 @ToString
 public class CommentVO {
-int commentNum;
-String commentContent;
-Date commentDate;
-int bulletinNum;
-String userid;
+
+	private int commentNum;
+	private String commentContent;
+	private Timestamp commentDate;
+	private int bulletinNum;
+	private String userId;
+	
 }
