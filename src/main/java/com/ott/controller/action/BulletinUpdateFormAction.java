@@ -9,23 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.ott.dao.BulletinDAO;
 import com.ott.dto.BulletinVO;
 
-public class BulletinUpdateFormAction implements Action {
+public class bulletinUpdateFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String url = "bulletin/bulletinUpdate.jsp";
+		int bulletinNum = Integer.parseInt(request.getParameter("bulletinNum"));
 		
-		String num = request.getParameter("bulletinNum");
+		BulletinVO vo = new BulletinVO();
 		
-		BulletinVO bVo = BulletinDAO.getInstance().
-				selectOneBulletinByNum(Integer.parseInt(num));
+		vo = BulletinDAO.getInstance().selectOneBulletin(bulletinNum);
 		
-		request.setAttribute("bulletin", bVo);
+		request.setAttribute("bulletin", vo);
 		
-		
-		request.getRequestDispatcher(url).forward(request, response);
-		
+		request.getRequestDispatcher("project/bulletinUpdate.jsp").forward(request, response);
+
 	}
 
 }

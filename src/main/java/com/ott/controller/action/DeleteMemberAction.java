@@ -5,24 +5,24 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ott.dao.MemberDAO;
-import com.ott.dto.MemberVO;
 
-public class DeleteMemberAction implements Action {
+public class deleteMemberAction implements Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		
-		System.out.println("넘어옴");
-		String userId = request.getParameter("userId");
+		String userid = (String)session.getAttribute("userid");
+		System.out.println("테스트");
+		System.out.println("테스트아이디>>" + userid);
+		MemberDAO.getInstance().deleteMember(userid);
 		
-		
-		System.out.println(userId);
-		MemberDAO.getInstance().deleteMember(userId);
-		
-		response.sendRedirect("OttServlet?command=member_info");
-		
+		request.getRequestDispatcher("project/login.jsp").forward(request, response);
+
 	}
 
 }

@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ott.dao.BulletinDAO;
 
-public class DeleteBulletinAction implements Action {
+public class deleteBulletinAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int bulletinNum = Integer.parseInt(request.getParameter("bulletinNum"));
+		int num =Integer.parseInt(request.getParameter("bulletinNum"));
 		
-		BulletinDAO.getInstance().deleteBulletin(bulletinNum);
+		BulletinDAO.getInstance().deleteBulletin(num);
 		
-		response.sendRedirect("OttServlet?command=delete_bulletin_form");
-		
+		response.sendRedirect("OttServlet?command=BulletinList_View");
+
 	}
 
 }
