@@ -35,8 +35,55 @@ public class OttServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		doGet(request, response);
+		String contentType = request.getContentType();
+		
+		if(contentType != null && contentType.startsWith("multipart/form-data")) {
+			ServletContext context = request.getSession().getServletContext();
+			String path = context.getRealPath("images");
+			String encType = "utf-8";
+			int sizeLimit = 20*1024*1024;
+			
+			MultipartRequest multi = new MultipartRequest(
+					request,path,sizeLimit,encType,new DefaultFileRenamePolicy()
+			);
+			
+			String command = multi.getParameter("command");
+			
+			ContentVO vo = new ContentVO();
+			
+			vo.setContentName(multi.getParameter("contentName"));
+			vo.setGenre(multi.getParameter("genre"));
+			vo.setActor(multi.getParameter("actor"));
+			vo.setYear(Integer.parseInt(multi.getParameter("year")));
+			vo.setStory(multi.getParameter("story"));
+			vo.setPoster("images/"+multi.getOriginalFileName("poster"));
+			vo.setDirector(multi.getParameter("director"));
 
+			
+			if(command.equals("admin_insert_content")) {
+				ContentDAO.getInstance().insertContent(vo);
+				response.sendRedirect("OttServlet?command=admin_content_info");				
+			}else if(command.equals("admin_update_content")) {
+				vo.setContentNum(Integer.parseInt(multi.getParameter("contentNum")));
+				
+				if(multi.getOriginalFileName("poster")==null) {
+					vo.setPoster("images/" + multi.getOriginalFileName("nomakeImg"));
+				}else {
+					vo.setPoster("images/"+multi.getOriginalFileName("poster"));					
+				}
+				
+				ContentDAO.getInstance().updateContent(vo);
+				response.sendRedirect("OttServlet?command=admin_content_info");								
+			}
+			
+			
+			return;
+		}
+		else {
+			response.setContentType("text/html; charset=utf-8");
+			doGet(request, response);
+		}
+		
 	}
+
 }

@@ -28,5 +28,4 @@ public class ContentVO {
 	private String story;
 	private String poster;
 	private String director;
-	
 }
