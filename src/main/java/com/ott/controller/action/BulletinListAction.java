@@ -29,7 +29,7 @@ public class BulletinListAction implements Action {
 			limit = Integer.parseInt(request.getParameter("limit"));
 		}
 		
-		String url = "/bulletin/bulletinList.jsp";
+		String url = "/bulletin/BulletinList.jsp";
 
 		// 1. DAO 생성
 		BulletinDAO bDao = BulletinDAO.getInstance();

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/ott.css">
+<link rel="stylesheet" type="text/css" href="css/Ott.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -34,7 +34,7 @@
          </table>
          <br>
          <br> 
-         	<input type="submit" value="등록" > 
+         	<input type="submit" value="등록" onclick="if(!confirm('등록하시겠습니까?')){return false;}"> 
             <input type="reset" value="다시 작성"> 
             <input type="button" value="목록" onclick="location.href='OttServlet?command=bulletin_list'">
       </form>

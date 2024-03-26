@@ -3,26 +3,25 @@
 <%@page import="java.util.List"%>
 <%@page import="com.ott.dao.CommentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<style>
-		.centerd{
-		position:fixed;
-		left:50%;
-		}
-		.comment{
-		width:500px;
-		height:50px;
-		
-		}
-	</style>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
+<style>
+.centerd {
+	position: fixed;
+	left: 50%;
+}
+
+.comment {
+	width: 500px;
+	height: 50px;
+}
+</style>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/ott.css">
+<link rel="stylesheet" type="text/css" href="css/Ott.css">
 <script type="text/javascript" src="script/bulletin.js"></script>
 <title>Insert title here</title>
 </head>
@@ -85,15 +84,5 @@
 			</c:forEach>
 		</table>
 	</div>
-	<!-- <script type="text/javascript">
-		$(function(){
-			$("#delOk").click(function(){
-				if(confirm('삭제하시겠습니까?')) {
-					
-				}
-			});
-		});
-		
-	</script> -->
 </body>
 </html>

@@ -29,7 +29,7 @@ public class BulletinViewAction implements Action {
 		
 		request.setAttribute("bulletin", bVo);
 		
-		String url = "bulletin/bulletinView.jsp";
+		String url = "bulletin/BulletinView.jsp";
 		int bulletinNum = bVo.getBulletinNum();
 		
 		request.setAttribute("bulletinNum", bulletinNum);

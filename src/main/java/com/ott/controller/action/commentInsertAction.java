@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ott.dao.CommentDAO;
 
-public class commentInsertAction implements Action {
+public class CommentInsertAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
