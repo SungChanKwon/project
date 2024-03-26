@@ -12,20 +12,25 @@ import com.ott.dao.CommentDAO;
 public class CommentInsertAction implements Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("테스트화면");
-	  HttpSession session = request.getSession();
-	  
-	  String commentContent =request.getParameter("commentContent");
-	  int bulletinNum = Integer.parseInt(request.getParameter("bulletinNum"));
-	  String userId = (String)session.getAttribute("userId");
-	  System.out.println(commentContent);
-	  System.out.println(bulletinNum);
-	  System.out.println(userId);
-	  
-	  CommentDAO.getInstance().insertComment(bulletinNum, commentContent, userId);
-	  
-	  response.sendRedirect("OttServlet?command=bulletin_view&bulletinNum="+ bulletinNum+"");
+	public void execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("왜 안찍혀 ;;");
+		HttpSession session = request.getSession();
+		
+		String commentContent =request.getParameter("commentContent");
+		int bulletinNum = Integer.parseInt(request.getParameter("bulletinNum"));
+		String userid = (String)session.getAttribute("userid");
+		
+		System.out.println("댓글내용"+commentContent);
+		System.out.println("게시글번호"+bulletinNum);
+		System.out.println("유저아이디"+userid);
+		
+		CommentDAO.getInstance().insertComment(bulletinNum, commentContent, userid);
+		
+		response.sendRedirect("OttServlet?command=bulletin_content_View&bulletinNum="+ bulletinNum+"");
+	
+		
+
 	}
 
 }
