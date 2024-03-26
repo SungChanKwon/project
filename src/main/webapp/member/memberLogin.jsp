@@ -10,12 +10,16 @@
 <!-- login.css를 사용하기위한 링크 -->
 <link rel="stylesheet" href="css/login.css">
 
-<!-- member.js 스크립트를 외부에서 가져옴 -->
+<!-- member.js 스크립트 -->
 <script src="script/member.js"></script>
+<!-- jquery 스크립트 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 로그인 폼 -->
+	<!-- 로그인 폼 -->
 	<main>
 		<div class="loginWrap">
 			<h1>로그인</h1>

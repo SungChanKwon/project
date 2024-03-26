@@ -1,8 +1,7 @@
 package com.ott.controller.action;
 
-
 public class ActionFactory {
-
+	
 	private static ActionFactory instance = new ActionFactory();
 	
 	private ActionFactory() {}
@@ -89,8 +88,30 @@ public class ActionFactory {
 			action = new commentUpdateAction();
 		}else if(command.equals("serach_bulletin")) {
 			action = new bulletinSearchAction();
+		}else if(command.equals("member_login_form")) {
+			action = new MemberLoginActionForm();
+		}else if(command.equals("member_insert_form")) {
+			action = new MemberInsertActionForm();
+		}else if(command.equals("member_insert")) {
+			action = new MemberInsertAction();
+		}else if(command.equals("member_idcheck_form")) {
+			action = new MemberIdcheckFormAction();
+		}else if(command.equals("idCheck")) {
+			action = new MemberIdcheckAction();
+		}else if(command.equals("member_login")) {
+			action = new MemberLoginAction();
+		}else if(command.equals("member_findid_form")) {
+			action = new MemberFindidFormAction();
+		}else if(command.equals("member_findid")) {
+			action = new MemberFindidAction();
+		}else if(command.equals("member_findpw_form")) {
+			action = new MemberFindpwFormAction();
+		}else if(command.equals("member_findpw")) {
+			action = new MemberFindpwAction();
+		}else if(command.equals("member_findid_after_form")) {
+			action = new MemberFindidAfterFormAction();
 		}
 		return action;
 	}
-
 }
+		

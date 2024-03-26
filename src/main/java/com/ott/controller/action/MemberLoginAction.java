@@ -21,23 +21,25 @@ public class MemberLoginAction implements Action {
 		String pwd = request.getParameter("pwd");
 		
 		MemberDAO mDao = MemberDAO.getInstance();
-		String url = "main.jsp";
+		String url = "member/memberLogin.jsp";
 		
 		//-1 : 비밀번호가 틀림" 0 :아이디가 틀림 1 : 로그인성공
 		int result = mDao.userCheck(userid,pwd);
 		MemberVO mVo = mDao.getMember(userid);
 		HttpSession session = request.getSession();
-		
 		if(result == 1) {
-			session.setAttribute("member",mVo);
+			session.setAttribute("loginUser",mVo);
+			
 			request.setAttribute("message","로그인 성공");
+			url = "member/loginSusess.jsp";
 		}else if(result == 0) {
 			request.setAttribute("message","존재하지않는 ID");
 		}else if(result == -1) {
 			request.setAttribute("message","비밀번호가 다릅니다.");
 		}
 		
-		response.sendRedirect(url);
-		
+		request.getRequestDispatcher(url)
+		.forward(request, response);
+
 		}
 }
