@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ott.dto.ContentVO;
-
-import util.DBManager;
+import com.ott.util.DBManager;
 
 public class ContentDAO {
 

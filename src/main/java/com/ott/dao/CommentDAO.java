@@ -112,7 +112,7 @@ public class CommentDAO {
 	         
 	         pstmt.setInt(1, bulletinNum);
 	         pstmt.setString(2, commentContent);
-	         pstmt.setString(3, userid);
+	         pstmt.setString(3, userId);
 	         
 	         pstmt.executeUpdate();
 	         
