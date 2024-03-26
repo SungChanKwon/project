@@ -2,26 +2,33 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="../Header.jsp" %>
+<%@taglibprefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- login.css를 사용하기위한 링크 -->
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/Login.css">
 
-<!-- member.js 스크립트를 외부에서 가져옴 -->
+<!-- member.js 스크립트 -->
 <script src="script/Member.js"></script>
+<!-- jquery 스크립트 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 로그인 폼 -->
+	<!-- 로그인 폼 -->
 	<main>
 		<div class="loginWrap">
 			<h1>로그인</h1>
 
 			<form action="OttServlet" method="post" name="frm">
-			<input type="hidden" name = "command" value="member_login">
+				<input type="hidden" name="command" value="member_login">
 				<div class="loginFormBox">
 					<input type="text" name="userid" placeholder="아이디를 입력하세요"
 						onfocus="this.placeholder = ''"

@@ -225,6 +225,39 @@ public class MemberDAO {
 	}
 
 // 회원가입
+	//ID중복체크
+			public int confirmID(String userid) {
+				
+				String sql = "select userid from member where userid =?";
+				int result = -1;
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				System.out.println("userid" + userid);
+				try {
+					con = DBManager.getConnection();
+					
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, userid);
+					
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						result = 1; // ID 사용가능
+					}else {
+						result = -1; // ID중복 사용불가
+					}
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+				}finally {
+					DBManager.close(con, pstmt, rs);
+				}
+				return result;
+			}
+
+	// 회원가입
 	public int insertMember(MemberVO mVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -267,7 +300,7 @@ public class MemberDAO {
 		try {
 			con = DBManager.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, userid);
+			pstmt.setString(1, userId);
 
 			rs = pstmt.executeQuery();
 
@@ -319,9 +352,8 @@ public class MemberDAO {
 		}
 		return mVo;
 	}
-
-// id찾기
-	public String findId(String name, String email) {
+	// id찾기
+	public String findId(String name,String email) {
 		String sql = "select userid from member where name = ? and email = ?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -337,7 +369,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				userid = rs.getString("userid");
+				userid = rs.getString("userId");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -358,7 +390,7 @@ public class MemberDAO {
 		try {
 			con = DBManager.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, userid);
+			pstmt.setString(1, userId);
 			pstmt.setString(2, email);
 
 			rs = pstmt.executeQuery();
