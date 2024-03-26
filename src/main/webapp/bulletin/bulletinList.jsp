@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/ott.css">
+<link rel="stylesheet" type="text/css" href="css/Ott.css">
 <title>Insert title here</title>
 </head>
 <body>

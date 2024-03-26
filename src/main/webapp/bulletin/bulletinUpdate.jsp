@@ -5,16 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/ott.css">
-<!--    <script type="text/javascript">
-	function click_event() {
-		if(confirm("수정하시겠습니까?") == true) {
-			document.update.submit();
-		}else {
-			return;
-		}
-	}
-</script> --> 
+<link rel="stylesheet" type="text/css" href="css/Ott.css">
 </head>
 <body>
 	<div id="wrap" align="center">
@@ -43,7 +34,7 @@
             </tr>
          </table>
          <br>
-         <br> <input type="submit" value="등록" name= "update" onclick="if(!confirm('수정하시겠습니까?')){return false;}">
+         <br> <input type="submit" value="수정" name= "update" onclick="if(!confirm('수정하시겠습니까?')){return false;}">
               <input type="reset" value="다시 작성">
               <input type="button" value="목록"
             			onclick="location.href='OttServlet?command=bulletin_list'">

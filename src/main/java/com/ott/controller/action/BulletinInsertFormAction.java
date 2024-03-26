@@ -12,7 +12,7 @@ public class BulletinInsertFormAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		request.getRequestDispatcher("bulletin/bulletinWrite.jsp").forward(request, response);
+		request.getRequestDispatcher("bulletin/BulletinWrite.jsp").forward(request, response);
 		
 		
 		
