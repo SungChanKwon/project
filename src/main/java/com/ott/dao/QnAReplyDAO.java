@@ -3,9 +3,11 @@ package com.ott.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.ott.controller.util.DBManager;
 import com.ott.dto.QnAReplyVO;
-import com.ott.util.DBManager;
 
 public class QnAReplyDAO {
 
@@ -17,6 +19,44 @@ public class QnAReplyDAO {
 	
 	public static QnAReplyDAO getInstance() {
 		return instance;
+	}
+	
+	public List<QnAReplyVO> getAllQnAReply(){
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from qnaReply order by replyNum";
+		
+		QnAReplyVO vo = new QnAReplyVO();
+		List<QnAReplyVO> list = new ArrayList<QnAReplyVO>();
+		
+		try {
+			
+			con = DBManager.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+				
+				vo.setReplyContent(rs.getString("replyContent"));
+				vo.setReplyRegiDate(rs.getTimestamp("replyRegiDate"));
+				vo.setReplyNum(rs.getInt("replyNum"));
+				vo.setQnaNum(rs.getInt("qnaNum"));
+				
+				
+				list.add(vo);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		return list;
 	}
 	
 	public QnAReplyVO getOneQnAReply(int qnaNum) {

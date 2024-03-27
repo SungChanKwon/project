@@ -17,24 +17,19 @@ public class InsertQnAAction implements Action {
 		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		HttpSession session = request.getSession();
 		
 		
 		QnAVO vo = new QnAVO();
 		
-		String s = request.getParameter("qnaTitle");
-		System.out.println("test>>" + s);
-//		vo.setQnaTitle();
-		String userId =(String)session.getAttribute("userId");
-		vo.setUserId(userId);
-		System.out.println("test!>" + userId);
+		vo.setQnaTitle(request.getParameter("qnaTitle"));
+		vo.setUserId(request.getParameter("userId"));
 		vo.setQnaCategory(request.getParameter("qnaCategory"));
 		vo.setQnaContent(request.getParameter("qnaContent"));
 		vo.setQnaPwd(request.getParameter("qnaPwd"));
 		
-		QnaDAO.getInstance().insertQnA();
+		QnaDAO.getInstance().insertQnA(vo);
 		
-		request.getRequestDispatcher("qna/QnAList.jsp").forward(request, response);
+		response.sendRedirect("OttServlet?command=qna_list");
 	}
 
 }

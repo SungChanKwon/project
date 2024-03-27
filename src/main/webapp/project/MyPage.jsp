@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action = "mainServlet" method ="post">
+<form action = "OttServlet" method ="post">
 <h3>마이페이지입니다.</h3>
-<input type ="hidden" name ="userid" value= ${userid }>
+<input type ="hidden" name ="userId" value= ${userId }>
 <a href ="OttServlet?command=changeUser_InformationForm">개인정보 변경</a><br>
 <a href ="OttServlet?command=BulletinList_View">내가 작성한 게시글 확인</a><br>
 <a href ="OttServlet?command=contentWishList_View">내가 찜한 작품</a><br>

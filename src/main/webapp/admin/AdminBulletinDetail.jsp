@@ -45,7 +45,7 @@
 		<br>  
 		<a href="OttServlet?command=admin_delete_bulletin&bulletinNum=${bulletin.bulletinNum}">삭제하기</a>
 			<input type="button" value="게시글 리스트"
-			onclick="location.href='OttServlet?command=admin_delete_bulletin_form'">
+			onclick="location.href='OttServlet?command=admin_admin_content_detail&contentNum=${bulletin.contentNum}'">
 	</div>
 	</section>
 	<footer>

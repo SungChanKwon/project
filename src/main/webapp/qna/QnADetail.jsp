@@ -52,7 +52,7 @@
 						<td colspan="2">
 							<div id="reply">
 									<table>
-								<c:if test="${member.admin == 0 && !empty reply.replyContent}">
+								<c:if test="${not empty reply.replyContent}">
 									<input type="hidden" name="qnaNum" value="${qna.qnaNum}">
 											<tr>
 												<th>문의 답변 드립니다.</th>
@@ -68,8 +68,8 @@
 											</tr>
 								</c:if>
 										</table>
-								<c:if test="${member.admin == 1 && empty reply.replyNum}">
-									<form action="OttServlet?command=qna_reply" method="post">
+								<c:if test="${member.admin == 1 && empty reply.qnaNum}">
+									<form action="OttServlet?command=admin_qna_reply" method="post">
 									<input type="hidden" name="qnaNum" value="${qna.qnaNum}">
 										<table>
 											<tr>

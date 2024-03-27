@@ -50,7 +50,7 @@ height:50px;
 		</table>
 		
 
-		<c:if test="${userid eq bulletin.userid}">
+		<c:if test="${userId eq bulletin.userId}">
 		<br> <br> <input type="button" value="게시글 수정" onclick="location.href='OttServlet?command=Bulletin_Update_Form&bulletinNum=${bulletin.bulletinNum}'">
 		<input type="button" value="게시글 삭제" onclick="location.href='OttServlet?command=Bulletin_delete&bulletinNum=${bulletin.bulletinNum}'">
 		</c:if>
@@ -67,12 +67,12 @@ height:50px;
 		<table>
 		<c:forEach var="comment" items="${comment}">
 		<tr>
-		<td>작성자 명 :${comment.userid} 작성 날짜: ${comment.commentDate }</td>
+		<td>작성자 명 :${comment.userId} 작성 날짜: ${comment.commentDate }</td>
 
 		</tr> 
 		<tr>
 		<td>${comment.commentContent } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<c:if test="${userid eq comment.userid}">
+				<c:if test="${userId eq comment.userId}">
 		<input type="button" value="삭제" onclick="return checkComment(${comment.commentNum},${bulletinNum })">
 		<input type="button" value="수정" onclick="open_wid('OttServlet?command=comment_Update_Form&commentNum=${comment.commentNum}', 'update')">
 		</c:if>

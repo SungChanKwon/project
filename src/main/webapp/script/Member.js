@@ -1,6 +1,6 @@
 function loginCheck() {
 	//로그인유효성검사	
-	if (document.frm.userid.value == "") {
+	if (document.frm.userId.value == "") {
 		alert("아이디를 입력하세요.");
 		frm.userid.focus();
 		return false;
@@ -206,25 +206,23 @@ function searchpwCheck() {
 			}
 		}).open();
 	}
-	
+
 	// 주소를 찾고 선택시 자동입력 //
 
-    // 우편번호 찾기를 실행하고 선택한 주소 정보를 입력하는 함수
-    function sample6_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을 때 실행할 코드를 작성하는 부분.
+	// 우편번호 찾기를 실행하고 선택한 주소 정보를 입력하는 함수
+	function sample6_execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을 때 실행할 코드를 작성하는 부분.
 
-                // 우편번호와 주소 정보를 해당 필드에 자동으로 입력
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = data.address;
+				// 우편번호와 주소 정보를 해당 필드에 자동으로 입력
+				document.getElementById('sample6_postcode').value = data.zonecode;
+				document.getElementById("sample6_address").value = data.address;
 
-                // 상세주소 입력 필드에 포커스 설정
-                document.getElementById("sample6_detailAddress").focus();
-            }
-        }).open();
-    }
-
+				// 상세주소 입력 필드에 포커스 설정
+				document.getElementById("sample6_detailAddress").focus();
+			}
+		}).open();
+	}
 	
-
-}	
+}

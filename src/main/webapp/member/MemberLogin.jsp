@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="../Header.jsp" %>
-<%@taglibprefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -30,7 +29,7 @@
 			<form action="OttServlet" method="post" name="frm">
 				<input type="hidden" name="command" value="member_login">
 				<div class="loginFormBox">
-					<input type="text" name="userid" placeholder="아이디를 입력하세요"
+					<input type="text" name="userId" placeholder="아이디를 입력하세요"
 						onfocus="this.placeholder = ''"
 						onblur="this.placeholder = '아이디를 입력하세요'">
 				</div>

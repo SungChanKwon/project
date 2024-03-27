@@ -31,6 +31,7 @@ public class BulletinVO {
 	private Timestamp bulletinDate;
 	private String bulletinContent;
 	private int readCount;
+	private int contentNum;
 
 
 }

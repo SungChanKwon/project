@@ -14,18 +14,17 @@ public class CommentInsertAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("왜 안찍혀 ;;");
 		HttpSession session = request.getSession();
 		
 		String commentContent =request.getParameter("commentContent");
 		int bulletinNum = Integer.parseInt(request.getParameter("bulletinNum"));
-		String userid = (String)session.getAttribute("userid");
+		String userId = (String)session.getAttribute("userId");
 		
 		System.out.println("댓글내용"+commentContent);
 		System.out.println("게시글번호"+bulletinNum);
-		System.out.println("유저아이디"+userid);
+		System.out.println("유저아이디"+userId);
 		
-		CommentDAO.getInstance().insertComment(bulletinNum, commentContent, userid);
+		CommentDAO.getInstance().insertComment(bulletinNum, commentContent, userId);
 		
 		response.sendRedirect("OttServlet?command=bulletin_content_View&bulletinNum="+ bulletinNum+"");
 	

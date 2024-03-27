@@ -15,15 +15,13 @@ public class MemberIdcheckAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("테스트");
 		
-		String userid = request.getParameter("userid");
+		String userId = request.getParameter("userid");
 		
 		MemberDAO mDao = MemberDAO.getInstance();
-		int result = mDao.confirmID(userid);
-		System.out.println(">>>" + result);
+		int result = mDao.confirmID(userId);
 		
-		request.setAttribute("userid",userid);
+		request.setAttribute("userId",userId);
 		request.setAttribute("result",result);
 		
 		request.getRequestDispatcher("member/IdCheck.jsp").forward(request, response);

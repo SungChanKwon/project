@@ -27,12 +27,16 @@
 			<c:forEach items="${qnaList}" var="qna">
 				<tr>
 					<td>
-						<c:if test="${!empty qnaReply.replyNum}">
+					<c:forEach items="${qnaReply}" var="reply">
+						<c:if test="${reply.qnaNum == qna.qnaNum}">
 							<p>답변완료</p>
 						</c:if>
-						<c:if test="${empty qnaReply.replyNum}">
+						</c:forEach>
+					<c:forEach items="${qnaReply}" var="reply">
+						<c:if test="${reply.qnaNum != qna.qnaNum}">
 							<p style="color:red">미답변문의</p>
 						</c:if>
+						</c:forEach>
 					</td>
 					<td>${qna.qnaNum}</td>
 					<td><a href="OttServlet?command=qna_detail&qnaNum=${qna.qnaNum}&page=${page.page}">${qna.qnaTitle}</a></td>

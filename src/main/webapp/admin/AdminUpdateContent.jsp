@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/UpdateContent.css">
-<script type="text/javascript" src="script/Content.js"></script>
+<script type="text/javascript" src="script/AdminContent.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -18,7 +18,7 @@
 	<div id="info" align="center">
 		<form enctype="multipart/form-data" method="post" name="frm"
 			action="OttServlet">
-			<input type="hidden" name="command" value="update_content">
+			<input type="hidden" name="command" value="admin_update_content">
 			<input type="hidden" name="contentNum" value="${content.contentNum}">
 			<input type="hidden" name="nomakeImg" value="${content.poster}">
 			<input type="hidden" name="page" value="${page}">

@@ -15,20 +15,20 @@ public class LoginCheckAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		String userid = request.getParameter("userid");
+		String userId = request.getParameter("userId");
 		String pwd = request.getParameter("pwd");
 		String url = "project/Login.jsp";
 		HttpSession session = request.getSession();
 		
 		MemberDAO mDao = MemberDAO.getInstance();
 		
-		int result = mDao.checkUser(userid, pwd);
+		int result = mDao.userCheck(userId, pwd);
 		
 		
 		//1: 로그인 성공 0: 비밀번호 불일치 -1: 아이디 불일치
 		if(result == 1) {
 			url = "project/MyPage.jsp";
-			session.setAttribute("userid", userid);
+			session.setAttribute("userid", userId);
 		}
 		else if(result == 0) {
 			request.setAttribute("message", "비밀번호가 틀렸습니다.");

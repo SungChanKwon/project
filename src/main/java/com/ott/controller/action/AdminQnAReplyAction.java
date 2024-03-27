@@ -23,14 +23,13 @@ public class AdminQnAReplyAction implements Action {
 		
 		rVo.setReplyContent(request.getParameter("replyContent"));
 		rVo.setQnaNum(qnaNum);
-		
 		System.out.println(rVo);
 		
 		QnAReplyDAO.getInstance().insertQnAReply(rVo);
 		
 		
 		
-		request.getRequestDispatcher("qna/QnADetail.jsp").forward(request, response);
+		response.sendRedirect("OttServlet?command=qna_list");
 	}
 
 }

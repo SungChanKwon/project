@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ott.controller.util.DBManager;
 import com.ott.dto.CommentVO;
-import com.ott.util.DBManager;
 
 public class CommentDAO {
 
@@ -41,7 +41,7 @@ public class CommentDAO {
 				vo.setCommentNum(rs.getInt("commentNum"));
 				vo.setCommentContent(rs.getString("commentContent"));
 				vo.setCommentDate(rs.getTimestamp("commentDate"));
-				vo.setUserid(rs.getString("userid"));
+				vo.setUserId(rs.getString("userId"));
 				
 				list.add(vo);
 			}
@@ -75,7 +75,7 @@ public class CommentDAO {
 				vo.setCommentNum(rs.getInt("commentNum"));
 				vo.setCommentContent(rs.getString("commentContent"));
 				vo.setCommentDate(rs.getTimestamp("commentDate"));
-				vo.setUserid(rs.getString("userid"));
+				vo.setUserId(rs.getString("userId"));
 				}
 			
 			System.out.println("테뀨vo>>" + vo);

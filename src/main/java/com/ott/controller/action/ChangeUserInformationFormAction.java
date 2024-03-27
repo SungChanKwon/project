@@ -18,7 +18,7 @@ public class ChangeUserInformationFormAction implements Action {
 		
 		HttpSession session = request.getSession();
 		
-		String id = (String) session.getAttribute("userid");
+		String id = (String) session.getAttribute("userId");
 		System.out.println("id>>" + id);
 		MemberVO vo = MemberDAO.getInstance().getOneMember(id);
 		

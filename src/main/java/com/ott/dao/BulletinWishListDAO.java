@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ott.controller.util.DBManager;
 import com.ott.dto.BulletinVO;
-import com.ott.util.DBManager;
 
 public class BulletinWishListDAO {
 
@@ -76,7 +76,7 @@ public class BulletinWishListDAO {
  	 				vo.setBulletinTitle(rs.getString("bulletinTitle"));
  	 				vo.setBulletinDate(rs.getTimestamp("bulletinDate"));
  	 				vo.setBulletinContent(rs.getString("bulletinContent"));
- 	 				vo.setReadcount(rs.getInt("readcount"));
+ 	 				vo.setReadCount(rs.getInt("readCount"));
  	 				vo.setName(rs.getString("name"));
  	 				
  	 				Volist.add(vo);

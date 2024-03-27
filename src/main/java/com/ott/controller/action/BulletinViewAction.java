@@ -11,8 +11,10 @@ import javax.servlet.http.HttpSession;
 
 import com.ott.dao.BulletinDAO;
 import com.ott.dao.CommentDAO;
+import com.ott.dao.ContentDAO;
 import com.ott.dto.BulletinVO;
 import com.ott.dto.CommentVO;
+import com.ott.dto.ContentVO;
 
 public class BulletinViewAction implements Action {
 
@@ -22,6 +24,9 @@ public class BulletinViewAction implements Action {
 		
 		
 		int num = Integer.parseInt(request.getParameter("bulletinNum"));
+		
+		int contentNum = Integer.parseInt(request.getParameter("contentNum"));
+		
 		
 		BulletinVO bVo = BulletinDAO.getInstance().selectOneBulletinByNum(num);
 		
@@ -37,8 +42,11 @@ public class BulletinViewAction implements Action {
 		CommentDAO cDao = CommentDAO.getInstance();
    	  	List<CommentVO> list = new ArrayList<CommentVO>();
    	  	//int bulletinNum = (int) request.getAttribute("bulletinNum");
-   	  	list = cDao.getComments(num);
+   	  	list = cDao.getAllComments(num);
    	  	
+   	  	ContentVO vo = ContentDAO.getInstance().getOneContent(contentNum);
+   	  	
+   	  	request.setAttribute("content", vo);
    	  	request.setAttribute("comment", list);
 		
    	  	request.getRequestDispatcher(url).forward(request, response);

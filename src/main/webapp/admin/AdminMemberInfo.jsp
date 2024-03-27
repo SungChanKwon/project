@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/MemberInfo.css">
-<script type="text/javascript" src="script/Member.js"></script>
+<script type="text/javascript" src="script/AdminMember.js"></script>
 <title>Insert title here</title>
 <script>
 

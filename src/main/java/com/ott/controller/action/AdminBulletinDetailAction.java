@@ -16,7 +16,7 @@ public class AdminBulletinDetailAction implements Action {
 		
 		int bulletinNum = Integer.parseInt(request.getParameter("bulletinNum"));
 		
-		BulletinVO vo = BulletinDAO.getInstance().getOneBulletin(bulletinNum);
+		BulletinVO vo = BulletinDAO.getInstance().selectOneBulletinByNum(bulletinNum);
 		
 		request.setAttribute("bulletin", vo);
 		request.getRequestDispatcher("admin/AdminBulletinDetail.jsp").forward(request, response);

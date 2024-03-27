@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ott.controller.util.DBManager;
 import com.ott.dto.QnAVO;
-import com.ott.util.DBManager;
 
 public class QnaDAO {
 
@@ -140,7 +140,7 @@ public class QnaDAO {
 		return vo;
 	}
 
-	public void insertQnA() {
+	public void insertQnA(QnAVO vo) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -151,7 +151,6 @@ public class QnaDAO {
 			con = DBManager.getConnection();
 			pstmt = con.prepareStatement(sql);
 			
-			QnAVO vo = new QnAVO();
 			
 			pstmt.setString(1, vo.getUserId());
 			pstmt.setString(2, vo.getQnaTitle());

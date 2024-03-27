@@ -24,7 +24,7 @@ public class SelectMyBulletinContentViewAction implements Action {
 		
 		BulletinDAO bDao = BulletinDAO.getInstance();
 		
-		vo =bDao.selectOneBulletin(bulletinNum);
+		vo =bDao.selectOneBulletinByNum(bulletinNum);
 		
 		bDao.updateReadCount(bulletinNum);
 		

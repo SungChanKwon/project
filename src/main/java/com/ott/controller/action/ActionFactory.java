@@ -15,11 +15,8 @@ public class ActionFactory {
 		
 		Action action = null;
 		
-		System.out.println("ActionFactory : " + command);
 		
-		if(command.equals("bulletin_list")) {
-			action = new BulletinListAction();
-		}else if(command.equals("bulletin_write_form")) {
+		if(command.equals("bulletin_write_form")) {
 			action = new BulletinInsertFormAction();
 		}else if(command.equals("bulletin_write")) {
 			action = new BulletinInsertAction();
@@ -127,6 +124,10 @@ public class ActionFactory {
 			action = new MemberFindpwAction();
 		}else if(command.equals("member_findid_after_form")) {
 			action = new MemberFindidAfterFormAction();
+		}else if(command.equals("my_page")) {
+			action = new MemberMyPageFormAction();
+		}else if(command.equals("content_list")) {
+			action = new ContentListFormAction();
 		}
 		return action;
 	}

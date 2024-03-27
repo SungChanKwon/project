@@ -27,7 +27,7 @@ public class UpdateMemberAction implements Action {
 		String FullAddress = address1 + "." + address2;
 		System.out.println("주소"+FullAddress);
 	vo.setName(name);
-	vo.setUserId(request.getParameter("userid"));
+	vo.setUserId(request.getParameter("userId"));
 	vo.setEmail(request.getParameter("email"));
 	vo.setPhone(request.getParameter("phone"));
 	vo.setAddress(FullAddress);

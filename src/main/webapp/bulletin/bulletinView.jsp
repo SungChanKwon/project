@@ -50,14 +50,12 @@
 		</table>
 		<br>
 		<br> <input type="button" value="게시글 리스트"
-			onclick="location.href='OttServlet?command=bulletin_list'">
-		<c:if test="${not empty userId}">
+			onclick="location.href='OttServlet?command=admin_content_detail&contentNum=${bulletin.contentNum}'">
+		<c:if test="${member.userId eq bulletin.userId}">
 			<input type="button" value="게시글 수정"
 				onclick="location.href='OttServlet?command=bulletin_update_form&bulletinNum=${bulletin.bulletinNum}'">
 			<input type="button" value="게시글 삭제"
 				onclick="return check1(${bulletinNum})">
-			<input type="button" value="게시글 등록"
-				onclick="location.href='OttServlet?command=bulletin_write_form'">
 		</c:if>
 	</div>
 	<br>

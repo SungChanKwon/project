@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ott.controller.util.DBManager;
 import com.ott.dto.BulletinVO;
-import com.ott.util.DBManager;
 
 public class BulletinDAO {
 
@@ -26,7 +26,7 @@ public class BulletinDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "insert into bulletin(bulletinNum, name, userId, bulletinTitle, bulletinContent) values(bulletin_seq.nextval, ?, ?, ?, ?)";
+		String sql = "insert into bulletin(bulletinNum, name, userId, bulletinTitle, bulletinContent,contentNum) values(bulletin_seq.nextval, ?, ?, ?, ?,?)";
 		
 		try {
 			con = DBManager.getConnection();
@@ -37,7 +37,7 @@ public class BulletinDAO {
 			pstmt.setString(2, bVo.getUserId());
 			pstmt.setString(3, bVo.getBulletinTitle());
 			pstmt.setString(4, bVo.getBulletinContent());
-			
+			pstmt.setInt(5, bVo.getContentNum());
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {
@@ -52,7 +52,7 @@ public class BulletinDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "update bulletin set name=?, bulletinTitle=?, bulletinContent=? where bulletinNum = ?";
+		String sql = "update bulletin set name=?, bulletinTitle=?, bulletinContent=?, contentNum=? where bulletinNum = ?";
 		
 		try {
 			con = DBManager.getConnection();
@@ -62,6 +62,7 @@ public class BulletinDAO {
 			pstmt.setString(2, bVo.getBulletinTitle());
 			pstmt.setString(3, bVo.getBulletinContent());
 			pstmt.setInt(4, bVo.getBulletinNum());
+			pstmt.setInt(5, bVo.getContentNum());
 			
 			pstmt.executeUpdate();//sql문 실행
 			
@@ -128,6 +129,7 @@ public class BulletinDAO {
 				bVo.setBulletinDate(rs.getTimestamp("bulletinDate"));
 				bVo.setBulletinContent(rs.getString("bulletinContent"));
 				bVo.setReadCount(rs.getInt("readCount"));
+				bVo.setContentNum(rs.getInt("contentNum"));
 				
 				list.add(bVo);
 			}
@@ -167,9 +169,10 @@ public class BulletinDAO {
 				vo.setBulletinTitle(rs.getString("bulletinTitle"));
 				vo.setBulletinDate(rs.getTimestamp("bulletinDate"));
 				vo.setBulletinContent(rs.getString("bulletinContent"));
-				vo.setReadcount(rs.getInt("readcount"));
+				vo.setReadCount(rs.getInt("readCount"));
 				vo.setName(rs.getString("name"));
-				vo.setUserid(rs.getString("userid"));
+				vo.setContentNum(rs.getInt("contentNum"));
+				vo.setUserId(userid);
 
 				list.add(vo);
 			}
@@ -180,6 +183,33 @@ public class BulletinDAO {
 			DBManager.close(con, pstmt, rs);
 		}
 		return list;
+	}
+	
+	public int getListCount(int contentNum) {
+		int count = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select count(*) from bulletin where contentNum=?";
+		
+		try {
+			con = DBManager.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, contentNum);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+		}
+		return count;
 	}
 	
 	public int getListCount() {
@@ -231,6 +261,8 @@ public class BulletinDAO {
 				bVo.setReadCount(rs.getInt("readCount"));
 				bVo.setBulletinTitle(rs.getString("bulletinTitle"));
 				bVo.setBulletinContent(rs.getString("bulletinContent"));
+				bVo.setContentNum(rs.getInt("contentNum"));
+				bVo.setUserId(rs.getString("userId"));
 				
 				
 			}
@@ -295,9 +327,10 @@ public class BulletinDAO {
 	        	 vo.setBulletinContent(rs.getString("bulletinContent"));
 	        	 vo.setBulletinDate(rs.getTimestamp("bulletinDate"));
 	        	 vo.setName(rs.getString("name"));
-	        	 vo.setReadcount(rs.getInt("readCount"));
-	        	 vo.setUserid(rs.getString("userid"));
+	        	 vo.setReadCount(rs.getInt("readCount"));
+	        	 vo.setUserId(rs.getString("userId"));
 	        	 vo.setBulletinNum(rs.getInt("bulletinNum"));
+	        	 vo.setContentNum(rs.getInt("contentNum"));
 	        	 
 	        	 list.add(vo);
 	         }  

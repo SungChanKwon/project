@@ -17,21 +17,21 @@ public class MemberLoginAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userid = request.getParameter("userid");
+		String userId = request.getParameter("userId");
 		String pwd = request.getParameter("pwd");
 		
 		MemberDAO mDao = MemberDAO.getInstance();
 		String url = "member/MemberLogin.jsp";
 		
 		//-1 : 비밀번호가 틀림" 0 :아이디가 틀림 1 : 로그인성공
-		int result = mDao.userCheck(userid,pwd);
-		MemberVO mVo = mDao.getMember(userid);
+		int result = mDao.userCheck(userId,pwd);
+		MemberVO mVo = mDao.getMember(userId);
 		HttpSession session = request.getSession();
 		if(result == 1) {
-			session.setAttribute("loginUser",mVo);
+			session.setAttribute("member",mVo);
 			
 			request.setAttribute("message","로그인 성공");
-			url = "member/Main.jsp";
+			url = "index.jsp";
 		}else if(result == 0) {
 			request.setAttribute("message","존재하지않는 ID");
 		}else if(result == -1) {

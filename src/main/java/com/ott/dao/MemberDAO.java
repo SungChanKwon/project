@@ -1,14 +1,14 @@
 package com.ott.dao;
 
+import java.lang.reflect.Member;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ott.controller.util.DBManager;
 import com.ott.dto.MemberVO;
-import com.ott.util.DBManager;
 
 public class MemberDAO {
 
@@ -194,35 +194,6 @@ public class MemberDAO {
 
 	}
 
-	// ID중복체크
-	public int confirmID(String userid) {
-		int result = -1;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String sql = "select userid from member where userid =?";
-		try {
-			con = DBManager.getConnection();
-
-			pstmt = con.prepareStatement(sql);
-
-			pstmt.setString(1, userid);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				result = 1; // ID 사용가능
-			} else {
-				result = -1; // ID중복 사용불가
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(con, pstmt, rs);
-		}
-		return result;
-	}
 
 // 회원가입
 	//ID중복체크
@@ -288,7 +259,7 @@ public class MemberDAO {
 	}
 
 // 로그인체크
-	public int userCheck(String userid, String pwd) {
+	public int userCheck(String userId, String pwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -380,7 +351,7 @@ public class MemberDAO {
 	}
 
 // pw찾기
-	public String findPw(String userid, String email) {
+	public String findPw(String userId, String email) {
 		String sql = "select pwd from member where userid = ? and email = ?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -404,6 +375,39 @@ public class MemberDAO {
 			DBManager.close(con, pstmt, rs);
 		}
 		return pwd;
+	}
+	
+	public int updateMember(MemberVO vo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = -1;
+		String sql = "update set member admin=?, name=?, "
+				+ "  email=?, phone=?, address=? where userId=?";
+
+		try {
+			con = DBManager.getConnection();
+
+			pstmt = con.prepareStatement(sql);
+			
+			
+			pstmt.setString(1, vo.getUserId());
+			pstmt.setInt(2, vo.getAdmin());
+			pstmt.setString(3, vo.getName());
+			pstmt.setString(4, vo.getPwd());
+			pstmt.setString(5, vo.getEmail());
+			pstmt.setString(6, vo.getPhone());
+			pstmt.setString(7, vo.getAddress());
+
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt);
+		}
+		
+		return result;
 	}
 
 }

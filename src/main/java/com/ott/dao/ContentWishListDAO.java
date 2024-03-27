@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ott.controller.util.DBManager;
 import com.ott.dto.BulletinVO;
 import com.ott.dto.ContentVO;
-import com.ott.util.DBManager;
 
 public class ContentWishListDAO {
 

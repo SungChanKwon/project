@@ -15,7 +15,7 @@ public class LogoutAction implements Action {
 		
 		session.invalidate();
 		
-		request.getRequestDispatcher("project/Login.jsp").forward(request, response);
+		request.getRequestDispatcher("member/MemberLogin.jsp").forward(request, response);
 
 	}
 

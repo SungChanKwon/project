@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ott.dao.QnAReplyDAO;
 import com.ott.dao.QnaDAO;
 import com.ott.dto.PagingVO;
 import com.ott.dto.QnAReplyVO;
@@ -32,7 +33,9 @@ public class QnAListFormAction implements Action {
 		int count = QnaDAO.getInstance().getQnaList();
 		PagingVO vo = new PagingVO(page,limit,count);
 		
+		List<QnAReplyVO> rList = QnAReplyDAO.getInstance().getAllQnAReply();
 		
+		request.setAttribute("qnaReply", rList);
 		request.setAttribute("page", vo);
 		request.setAttribute("qnaList", list);
 		request.getRequestDispatcher("qna/QnAList.jsp").forward(request, response);

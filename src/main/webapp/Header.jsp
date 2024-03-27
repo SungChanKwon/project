@@ -16,8 +16,7 @@
 	</div>
 	<div id="menu" align="left">
 		<ul>
-			<li><a href="#">컨텐츠</a></li>
-			<li><a href="#">게시판</a></li>
+			<li><a href="OttServlet?command=content_list">컨텐츠</a></li>
 			<li><a href="OttServlet?command=qna_list">Q&A</a></li>
 		</ul>
 	</div>
@@ -26,9 +25,15 @@
 		<c:when test="${!empty member.userId}">
 			<c:if test="${member.admin == 1}">
 				<input type="image" src="images/profile4.png" onclick="location.href='OttServlet?command=admin_menu'">
+				<div class="logout">
+				<input type="button" value="로그아웃" onclick="location.href='OttServlet?command=logout_User'">
+				</div>
 			</c:if>
 			<c:if test="${member.admin == 0 }">
-				<input type="image" src="images/profile3.png" onclick="location.href='Index.jsp'">
+				<input type="image" src="images/profile3.png" onclick="location.href='OttServlet?command=my_page'">
+				<div class="logout">
+				<input type="button" value="로그아웃" onclick="location.href='OttServlet?command=logout_User'">
+				</div>
 			</c:if>
 		</c:when>
 		<c:when test="${empty member.userId}">

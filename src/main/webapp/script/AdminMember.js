@@ -4,7 +4,7 @@ function userConfirm(userId){
 	if(con == true){
 		alert(userId+"삭제되었습니다.");
 		
-		location.href="OttServlet?command=delete_member&userId="+userId;
+		location.href="OttServlet?command=admin_delete_member&userId="+userId;
 	}else{
 		alert("취소되었습니다.");
 	}

@@ -13,7 +13,7 @@
       <h1>게시글 등록</h1>
       <form name="frm" method="post" action="OttServlet">
          <input type="hidden" name="command" value="bulletin_write">
-          
+          <input type="hidden" name="contentNum" value="${content.contentNum}">
          <table>
             <tr>
                <th>작성자</th>
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                <th>아이디</th>
-               <td><input class="id-input" type="text" name="userId" value="hikari" readonly style="border:none;"></td>
+               <td><input class="id-input" type="text" name="userId" value="${member.userId}" readonly style="border:none;"></td>
             </tr>
             <tr>
                <th>제목</th>
@@ -36,7 +36,7 @@
          <br> 
          	<input type="submit" value="등록" onclick="if(!confirm('등록하시겠습니까?')){return false;}"> 
             <input type="reset" value="다시 작성"> 
-            <input type="button" value="목록" onclick="location.href='OttServlet?command=bulletin_list'">
+            <input type="button" value="목록" onclick="location.href='OttServlet?command=admin_content_detail'">
       </form>
    </div>
 </body>

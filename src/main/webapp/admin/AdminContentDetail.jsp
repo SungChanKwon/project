@@ -59,8 +59,18 @@
 			</tr>
 		</table>
 		<br> <a href="OttServlet?command=admin_update_content_form&contentNum=${content.contentNum}&page=${page.page}">컨텐츠 수정</a> 
+		<c:if test="${member.admin == 1}">
 		<input type="button" value="컨텐츠 리스트" onclick="location.href='OttServlet?command=admin_content_info&page=${page.page}'">
+		</c:if>
+		<c:if test="${member.admin == 0}">
+		<input type="button" value="컨텐츠 리스트" onclick="location.href='OttServlet?command=content_list&page=${page.page}'">
+		</c:if>
 	</div>
+	</div>
+	<div id="bulletin">
+		<c:if test="${member.admin == 0}">
+		<jsp:include page="../bulletin/BulletinList.jsp"></jsp:include>
+		</c:if>
 	</div>
 	</section>
 	<footer>

@@ -19,16 +19,19 @@ public class BulletinInsertAction implements Action {
 		
 		BulletinVO bVo = new BulletinVO();
 		
+		int contentNum = Integer.parseInt(request.getParameter("contentNum"));
+		
 		bVo.setName(request.getParameter("name"));
 		bVo.setUserId(request.getParameter("userId"));
 		bVo.setBulletinTitle(request.getParameter("bulletinTitle"));
 		bVo.setBulletinContent(request.getParameter("bulletinContent"));
-		
+		bVo.setContentNum(Integer.parseInt(request.getParameter("contentNum")));
 		BulletinDAO.getInstance().insertBulletin(bVo);
 		
 		System.out.println("bVo : " + bVo);
 		
-		response.sendRedirect("OttServlet?command=bulletin_list");
+		
+		response.sendRedirect("OttServlet?command=admin_content_detail&contentNum="+contentNum);
 	}
 
 }
